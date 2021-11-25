@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="04-GreetingService/.mvn/wrapper"/>
+	<classpathentry kind="src" path="04-GreetingService/src/main/java"/>
+	<classpathentry kind="src" path="04-GreetingService/src/test/java"/>
+	<classpathentry kind="src" path="04-mello-config-server/.mvn/wrapper"/>
+	<classpathentry kind="src" path="04-mello-config-server/src/main/java"/>
+	<classpathentry kind="src" path="04-mello-config-server/src/test/java"/>
+	<classpathentry kind="src" path="foo/src/main/java"/>
+	<classpathentry kind="src" path="foo/src/test/java"/>
+	<classpathentry kind="src" path="foo2-calculator/src/main/java"/>
+	<classpathentry kind="src" path="foo2-calculator/src/test/java"/>
+	<classpathentry kind="src" path="foo3-person/src/main/java"/>
+	<classpathentry kind="src" path="foo3-person/src/test/java"/>
+	<classpathentry kind="output" path="04-GreetingService/target/classes"/>
+</classpath>
