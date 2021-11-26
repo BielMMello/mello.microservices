@@ -23,23 +23,27 @@ jobs:
           
       - name: Build Eureka Naming Server Jar
         working-directory: ./Dockerizing/06-naming-server
-        run: mvn clean package -DskipTests
-        
-      - name: Build Eureka Naming Server Image
-        working-directory: ./Dockerizing/06-naming-server
-        run: docker build -t naming-server:0.0.1-SNAPSHOT .
+        run:  |
+          mvn clean package -DskipTests
+          docker build -t naming-server:0.0.1-SNAPSHOT .
         
       - name: Build API Gateway Jar
         working-directory: ./Dockerizing/06-api-gateway
-        run: mvn clean package -DskipTests
+        run:  |
+          mvn clean package -DskipTests
+          docker build -t api-gateway:0.0.1-SNAPSHOT .
         
       - name: Build Cambio Microservice Jar
         working-directory: ./Dockerizing/06-cambio-service
-        run: mvn clean package -DskipTests
+        run:  |
+          mvn clean package -DskipTests
+          docker build -t cambio-service:0.0.1-SNAPSHOT .
         
       - name: Build Book Microservice Jar
         working-directory: ./Dockerizing/06-book-service
-        run: mvn clean package -DskipTests
+        run:  |
+          mvn clean package -DskipTests
+          docker build -t book-service:0.0.1-SNAPSHOT .
         
       - name: Docker Compose Build
         working-directory: ./Dockerizing
@@ -48,12 +52,20 @@ jobs:
       - name: Push to Docker Hub Container Registry
         run: |
           docker tag ${{ secrets.DOCKER_USERNAME }}/naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/naming-server:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/naming-server:latest
           docker tag ${{ secrets.DOCKER_USERNAME }}/api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest
           docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/cambio-service:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/cambio-service:latest
           docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/book-service:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/book-service:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/naming-server:${{github.run_id}}
+          docker push ${{ secrets.DOCKER_USERNAME }}/naming-server:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/api-gateway:${{github.run_id}}
+          docker push ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/cambio-service:${{github.run_id}}
+          docker push ${{ secrets.DOCKER_USERNAME }}/cambio-service:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/book-service:${{github.run_id}}
+          docker push ${{ secrets.DOCKER_USERNAME }}/book-service:latest
      
         
